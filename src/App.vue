@@ -1,23 +1,44 @@
 <template>
-  <Image name="이상해씨"></Image>
-  <Image name="이상해풀" src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000201.png"></Image>
-  <Image name="이상해꽃" src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000301.png"></Image>
-  <Image name="파이리" src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000401.png"></Image>
+  <div class="grid">
+    <div v-for="(key, value) in res" :key="value">
+      <img :data-origin="key.src" />
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
 import Image from './components/Image.vue';
+import axios from 'axios';
 
 export default {
   name: 'App',
   components: {
     Image
   },
-  created:function(){
-    this.axios.get("/data/pokemonList.json").then((res)=>{
-      console.log(res);
+  data(){
+    return {
+      res:[],
+      observer:new IntersectionObserver(function(entries,observer){
+        entries.forEach(function(entry){
+          if( entry.isIntersecting ){
+            entry.target.src = "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/"+entry.target.dataset.origin;
+          }
+        });
+      })
+    };
+  },
+  mounted(){
+    axios.get("/data/pokemonList.json").then((pokemons)=>{
+      this.res = pokemons.data;
+    });  
+  },
+  updated(){
+    var vm = this;
+    var imgs = document.querySelectorAll(".grid img");
+    imgs.forEach(function(img){
+      vm.observer.observe(img);
     });
+    // vm.observer.observe(imgs);
   }
 }
 </script>
@@ -32,6 +53,8 @@ export default {
   margin-top: 60px;
 }
 #app{
-  .hello h1{color:red;}
+  .grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+    img{width:60px;height:60px;}
+  }
 }
 </style>
