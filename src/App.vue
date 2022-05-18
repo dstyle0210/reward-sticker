@@ -1,57 +1,36 @@
 <template>
-  <div class="grid">
-    <div v-for="(key, value) in res" :key="value">
-      <img :data-origin="key.src" />
-    </div>
-  </div>
+  <header><img src="https://pokemonkorea.co.kr/img/main_logo.png"></header>
+  <C_StickerList :lists={haves}></C_StickerList>
 </template>
 
 <script>
 import Image from './components/Image.vue';
+import C_StickerList from './components/C_StickerList.vue';
 import axios from 'axios';
-
 export default {
   name: 'App',
   components: {
-    Image
+    Image,
+    C_StickerList
   },
   data(){
     return {
-      res:[],
-      observer:new IntersectionObserver(function(entries,observer){
-        entries.forEach(function(entry){
-          if( entry.isIntersecting ){
-            entry.target.src = "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/"+entry.target.dataset.origin;
-          }
-        });
-      })
+      haves:[]
     };
   },
   mounted(){
-    axios.get("/data/pokemonList.json").then((pokemons)=>{
-      this.res = pokemons.data;
-    });  
+    axios.get("/data/_dummy.json").then((pokemons)=>{
+      this.haves = pokemons.data;
+    });
   },
   updated(){
-    var vm = this;
-    var imgs = document.querySelectorAll(".grid img");
-    imgs.forEach(function(img){
-      vm.observer.observe(img);
-    });
-    // vm.observer.observe(imgs);
+    
   }
 }
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 #app{
   .grid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;
     img{width:60px;height:60px;}
