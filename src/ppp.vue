@@ -1,39 +1,31 @@
 <template>
   <header><img src="https://pokemonkorea.co.kr/img/main_logo.png"></header>
-  <C_StickerList :stamps="stamps" :pokemons="pokemons"></C_StickerList>
-  <div class="throwBall"><button class="a-throwBall" @click="move"><span>던지기</span></button></div>
+  <C_stickerDraw :pokemons="pokemons"></C_stickerDraw>
 </template>
 
 <script>
-import Image from './components/Image.vue';
-import C_StickerList from './components/C_StickerList.vue';
+import C_stickerDraw from './components/C_stickerDraw.vue';
 import axios from 'axios';
 export default {
-  name: 'App',
+  name: 'ppp',
   components: {
-    Image,
-    C_StickerList
+    C_stickerDraw
   },
   data(){
     return {
-      pokemons:[],
-      stamps:[]
+      pokemons:[]
     };
   },
   mounted(){
-    axios.all([axios.get("/data/pokemonList.json"),axios.get("/data/_dummy.json")]).then((result)=>{
-      this.pokemons = result[0].data; // 전체 포켓몬 데이터
-      this.stamps = result[1].data; // 가지고 있는 스탬프수
+    var vm = this;
+    axios.get("/data/pokemonList.json").then((result)=>{
+      vm.pokemons = result.data; // 전체 포켓몬 데이터
     });
   },
   updated(){
 
   },
   methods:{
-    move:function(e){
-      e.preventDefault();
-      location.href="pub.html";
-    }
   }
 }
 </script>

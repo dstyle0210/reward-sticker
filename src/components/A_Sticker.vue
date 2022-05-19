@@ -1,17 +1,26 @@
 <template>
-<label class="a-sticker">
-    <input type="checkbox" name="sticker0" /><i></i>
+<label class="a-sticker" v-if="src">
+    <input type="checkbox" :name="inputname" /><i></i>
     <img :data-origin="src" alt="">
 </label>
+<label class="a-sticker" v-else></label>
 </template>
 <script>
 export default {
   name: 'A_Sticker',
   props: {
-    src: String
+    pokemon: Object
+  },
+  computed:{
+    src:function(){
+      return (this.pokemon) ? this.pokemon.src : "";
+    },
+    inputname:function(){
+      return (this.pokemon) ? "inputname"+this.pokemon.buid : "";
+    }
   },
   mounted(){
-        
+
   },
   updated(){
         
