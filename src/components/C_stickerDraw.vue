@@ -1,7 +1,7 @@
 <template>
 <div class="c-stickerDraw">
     <div class="pane" v-for="pokemon in cards">
-        <A_Sticker :pokemon="pokemon"></A_Sticker>
+        <A_Sticker :pokemon="pokemon" type="draw"></A_Sticker>
     </div>
 </div>
 </template>
@@ -50,4 +50,8 @@ export default {
 .c-stickerDraw{width:100%;display:flex;flex-wrap: wrap;align-items: center;justify-content: space-evenly;}
 .c-stickerDraw .pane{margin-top:40px;flex:0 0 33%;}
 .c-stickerDraw .pane .a-sticker{margin:0 auto;width:100px;height:100px;} 
+.c-stickerDraw .a-sticker i{top:20px;left:45px;
+    &:before{width:15px;height:50px;left:12px;top:0;}
+    &:after{width:35px;height:15px;left:-10px;top:35px;}
+}
 </style>

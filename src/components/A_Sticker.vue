@@ -1,6 +1,8 @@
 <template>
 <label class="a-sticker" v-if="src">
-    <input type="checkbox" :name="inputname" /><i></i>
+    <input type="checkbox" :name="inputname" v-if="inputType!='radio'" />
+    <input type="radio" name="pokemonDraw" v-if="inputType=='radio'" />
+    <i></i>
     <img :data-origin="src" alt="">
 </label>
 <label class="a-sticker" v-else></label>
@@ -9,7 +11,8 @@
 export default {
   name: 'A_Sticker',
   props: {
-    pokemon: Object
+    pokemon: Object,
+    type:String
   },
   computed:{
     src:function(){
@@ -17,6 +20,9 @@ export default {
     },
     inputname:function(){
       return (this.pokemon) ? "inputname"+this.pokemon.buid : "";
+    },
+    inputType:function(){
+      return (this.type=="draw") ? "radio" : "checkbox";
     }
   },
   mounted(){
