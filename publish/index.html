@@ -5,19 +5,116 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마봉 칭찬스티커</title>
+    <link rel="stylesheet" href="./css/before.css">
 </head>
 <body>
 <div id="app">
-    
-    <header>
-        <img src="https://pokemonkorea.co.kr/img/main_logo.png">
-        <div class="historyBack"><i class="fa-solid fa-circle-chevron-left"></i></div>
-    </header>
+    <section class="layout-header">
+        <header>
+            <img src="https://pokemonkorea.co.kr/img/main_logo.png">
+            <div class="historyBack"><i class="fa-solid fa-circle-chevron-left"></i></div>
+        </header>
+    </section>
 
-    
+    <main class="p-index">
+        <section class="s-stickerBook p-index__stickerBook">
+            <article class="c-stickerList">
+                <label class="a-sticker">
+                    <input type="checkbox" name="sticker0" /><i></i>
+                    <img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt="">
+                </label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
 
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
 
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                <label class="a-sticker"></label>
+                
+            </article>
+        </section>
+
+        <div class="p-index__throwBall">
+            <button class="a-throwBall"></button>
+        </div>
+
+    </main>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(function(){
+        var _interval;
+        $(window).on("scroll",function(){
+            clearTimeout(_interval);
+            _interval = setTimeout(() => {
+                console.log( $(window).scrollTop() );
+                if( $(window).scrollTop() > 50 ){
+                    $("header").addClass("-minify");
+                }else{
+                    $("header").removeClass("-minify");
+                }
+            },100);
+        });
+    });
+</script>
+<link rel="stylesheet" href="./css/style.css">
 </body>
 </html>
 

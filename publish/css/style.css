@@ -1,0 +1,151 @@
+@charset "UTF-8";
+#app {
+  opacity: 1 !important;
+}
+
+/* 페이팅 타임 회피용 */
+/*! 레이아웃 */
+.layout-header {
+  height: 70px;
+}
+.layout-header header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 70px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  background: #fff;
+  z-index: 2;
+  transition: max-height 400ms;
+}
+.layout-header header > img {
+  max-height: 70px;
+  transition: max-height 400ms;
+}
+.layout-header header.-minify {
+  max-height: 30px;
+}
+.layout-header header.-minify > img {
+  max-height: 30px;
+}
+
+.historyBack {
+  position: absolute;
+  top: 5px;
+  left: 10px;
+  width: 50px;
+  height: 50px;
+  font-size: 40px;
+}
+
+.historyBack .fa-circle-chevron-left {
+  color: #da343c;
+}
+
+.a-sticker {
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 60px;
+}
+.a-sticker:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.a-sticker input {
+  display: none;
+}
+.a-sticker input:checked ~ i {
+  display: inline-block;
+}
+.a-sticker img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.a-sticker i {
+  display: none;
+  position: absolute;
+  top: 8px;
+  left: 16px;
+  z-index: 3;
+  width: 24px;
+  height: 36px;
+  transform: rotate(45deg);
+  opacity: 0.8;
+}
+.a-sticker i:before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 36px;
+  background-color: #f5f5f5;
+  left: 12px;
+  top: 0;
+}
+.a-sticker i:after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #f5f5f5;
+  left: 0;
+  top: 24px;
+}
+
+/*! 공 던지기 버튼(뽑기) */
+.a-throwBall {
+  background: transparent;
+  border: 0;
+  width: 60px;
+  height: 60px;
+  background: #fff;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.a-throwBall:before {
+  content: "";
+  display: block;
+  width: 38px;
+  height: 38px;
+  background: url("https://pokemonkorea.co.kr/img/icon/icon_ball_c.png") no-repeat;
+}
+
+.c-stickerList {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+.c-stickerList .a-sticker {
+  margin: 0 auto;
+}
+
+.s-stickerBook {
+  width: 100%;
+}
+
+/*! PAGE */
+.p-index {
+  padding-bottom: 70px;
+}
+.p-index .p-index__stickerBook {
+  padding-top: 20px;
+}
+.p-index .p-index__throwBall {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}

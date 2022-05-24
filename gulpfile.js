@@ -1,7 +1,36 @@
 const nodePath = require('path');
+const fs = require('fs');
 const {src,dest, task, series, watch} = require("gulp");
+const sass = require("gulp-sass")(require("sass"));
+const babel = require("gulp-babel");
+const concat = require("gulp-concat");
+// const flatten = require('gulp-flatten'); 
 const replace = require('gulp-replace');
 const shell = require('gulp-shell');
+
+
+
+task("scss",function(done){
+    let globs = ["./publish/**/*.scss","!./publish/_scss/beforePaint.scss"];
+    return watch(globs).on("change",function(path){
+        src("./publish/_scss/style.scss")
+        .pipe(sass())
+        .pipe(dest("./publish/css"))
+        .on("end",function(){
+            console.log(path);
+        });
+    }).on("ready",function(){
+        console.log("SCSS Ready");
+        done();
+    })
+});
+task('serve:express', shell.task([
+    'node pserver'
+]));
+
+
+
+/*
 
 
 let version = "v1.2";
@@ -64,3 +93,5 @@ task("public:db", function(done){
 });
 task("public:serve",series("public:ready","public:db","serve:firebase"))
 task("deploy",series("public:ready","public:db","deploy:firebase"))
+
+*/
