@@ -3,7 +3,8 @@ module.exports = {
   lintOnSave : false,
   pages:{
       index:'src/pages/index/main.js',
-      typeList:'src/pages/typeList/main.js'
+      typeList:'src/pages/typeList/main.js',
+      pokemonList:'src/pages/pokemonList/main.js'
   },
 };
 

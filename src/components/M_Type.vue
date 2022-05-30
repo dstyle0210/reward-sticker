@@ -1,29 +1,38 @@
 <template>
-<a href="pokemonList.html" class="m-type"><i :class="cn"></i><span>노말</span></a>
+<a :href="href" class="m-type"><i :class="className"></i><span>{{typeName}}</span></a>
 </template>
 <script>
 export default {
   name: 'M_Type',
   props:{
-      idx:Number
+      type:Object
   },
   computed:{
-      cn:function(){
-          return "a-type -type"+(this.idx - 1);
+      href:function(){
+          return "pokemonList.html?idx="+this.type.no;
+      },
+      className:function(){
+          return "a-type -type"+this.type.no;
+      },
+      typeName:function(){
+          return this.type.name;
       }
   },
   mounted(){
-
+    
   },
   updated(){
 
   },
   methods:{
-    
+    move:function(e){
+      e.preventDefault();
+      location.href="/draw.html";
+    }
   }
 }
 </script>
-<style lang="scss">
+<style>
 /*! 포켓몬 타입 아이콘 + 텍스트 */
 .m-type{display:block;width:70px;}
 .m-type span{padding-top:5px;display:block;font-size:16px;color:#000;text-align:center;letter-spacing:-0.05em;}

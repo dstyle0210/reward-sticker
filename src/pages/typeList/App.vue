@@ -1,21 +1,28 @@
 <template>
   <Layout_Header></Layout_Header>
   <main class="p-typeList">
-      <article class="c-pokemonTypeList">
-        <M_Type v-for="idx in 18" :idx="idx"></M_Type>
-      </article>
+    <article class="c-pokemonTypeList">
+        <M_Type v-for="type in pokemonType" :type="type"></M_Type>
+    </article>
   </main>
 </template>
 <script>
 import Layout_Header from '../../components/Layout_Header.vue';
 import M_Type from '../../components/M_Type.vue';
+import pokemonType from '../../data/pokemonType.json';
 export default {
   name: 'App',
   components: {
     Layout_Header,
     M_Type
   },
+  data(){
+    return {
+      pokemonType:pokemonType
+    }
+  },
   mounted(){
+    console.log(pokemonType);
   },
   updated(){
 
