@@ -1,5 +1,7 @@
 
 .p-index{padding-bottom:70px;
     .p-index__stickerBook{padding-top:20px;}
-    .p-index__throwBall{position:fixed;right:20px;bottom:20px;}
+    .p-index__throwBall{position:fixed;right:20px;bottom:20px;
+        span{display:none;}
+    }
 }

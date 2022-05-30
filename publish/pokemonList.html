@@ -1,41 +1,82 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>마봉 칭찬스티커</title>
+    <link rel="stylesheet" href="./css/before.css">
 </head>
 <body>
-<header>
-    <img src="https://pokemonkorea.co.kr/img/main_logo.png">
-    <div class="historyBack"><i class="fa-solid fa-circle-chevron-left"></i></div>
-</header>
+<div id="app">
+    <section class="layout-header">
+        <header>
+            <img src="https://pokemonkorea.co.kr/img/main_logo.png">
+            <a href="typeList.html" class="historyBack" onclick="history.back();return false;"><i class="fa-solid fa-circle-chevron-left"></i></a>
+        </header>
+    </section>
 
-<article class="p-pokemonList">
+    <main class="p-pokemonList">
+        <section class="c-pokemonList">
     
-    <dl class="m-sticker">
-        <dt>이상해풀</dt>
-        <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
-    </dl>
-
-</article>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+            <dl class="m-sticker">
+                <dt>이상해풀</dt>
+                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            </dl>
+        
+        </section>
+    </main>
+</div>
 
 <style lang="scss">
-    *{margin:0;padding:0;box-sizing:border-box;}
-    body{background:#f5f5f5;}
-    a{text-decoration:none;}
-
-    
-
-    .pokemonList{display:grid;grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;}
-    .pokemonList .m-sticker{margin:0 auto;}
-    @media (max-width: 376px) {
-        .pokemonList{grid-template-columns: 1fr 1fr 1fr;}
-        .pokemonList .m-sticker{margin-top:20px;}
-    }
-
     .m-sticker{display:flex;flex-direction: column-reverse;width:100px;}
     .m-sticker dt{padding-top:5px;text-align:center;font-size:16px;}
     .m-sticker .a-sticker{width:100px;height:100px;}
@@ -50,6 +91,8 @@
     .a-sticker i:after {content:"";position: absolute;width:12px;height:12px;background-color:#eee;left:0;top:24px;}
 
 </style>
+<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </body>
 </html>
 

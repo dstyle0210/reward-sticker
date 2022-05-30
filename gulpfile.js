@@ -24,7 +24,7 @@ task("scss",function(done){
         done();
     })
 });
-task('serve:express', shell.task([
+task('server', shell.task([
     'node pserver'
 ]));
 
