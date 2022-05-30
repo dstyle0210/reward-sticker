@@ -1,0 +1,23 @@
+.c-stickerList{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px;
+    .a-sticker{margin:0 auto;}
+    @media (min-width: 375px) { &{grid-template-columns: repeat(4,1fr);} }
+    @media (min-width: 667px) { &{grid-template-columns: repeat(6,1fr);} }
+    @media (min-width: 768px) { &{grid-template-columns: repeat(7,1fr);} }
+    @media (min-width: 1024px) { &{grid-template-columns: repeat(10,1fr);} }
+}
+
+.c-pokemonTypeList{display:grid;grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    .m-type{width:70px;margin:30px auto 0;}
+    @media (min-width: 375px) { &{grid-template-columns: repeat(4,1fr);} }
+    @media (min-width: 667px) { &{grid-template-columns: repeat(6,1fr);} }
+    @media (min-width: 768px) { &{grid-template-columns: repeat(7,1fr);} }
+    @media (min-width: 1024px) { &{grid-template-columns: repeat(10,1fr);} }
+}
+
+.c-pokemonList{display:grid;
+    .m-sticker{margin:20px auto 0;}
+    @media (min-width: 375px) { &{grid-template-columns: repeat(3,1fr);} }
+    @media (min-width: 667px) { &{grid-template-columns: repeat(5,1fr);} }
+    @media (min-width: 768px) { &{grid-template-columns: repeat(6,1fr);} }
+    @media (min-width: 1024px) { &{grid-template-columns: repeat(8,1fr);} }
+}
