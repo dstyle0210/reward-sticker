@@ -29,7 +29,7 @@ export default {
 }
 </script>
 <style lang="scss">
-.a-sticker{position:relative;display:block;width:60px;height:60px;
+.a-sticker{position:relative;display:block;width:80px;height:80px;
     &:before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:#f5f5f5;border-radius:50%;overflow:hidden;}
     input{display:none;
         &:checked ~ i{display:inline-block;}

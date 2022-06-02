@@ -3,9 +3,9 @@
   <main class="p-pokemonList">
         <section class="c-pokemonList">
     
-            <dl class="m-sticker" v-for="idx in 30">
-                <dt>이상해풀</dt>
-                <dd><label class="a-sticker"><img src="https://data1.pokemonkorea.co.kr/newdata/pokedex/full/000101.png" alt=""></label></dd>
+            <dl class="m-sticker" v-for="pokemon in lists">
+                <dt>{{pokemon.name}}</dt>
+                <dd><label class="a-sticker" @click="addSticker(e,pokemon.buid)"><img :src="pokemon.pic" alt=""></label></dd>
             </dl>
 
         </section>
@@ -14,6 +14,7 @@
 <script>
 import Layout_Header from '../../components/Layout_Header.vue';
 import pokemonType from '../../data/pokemonType.json';
+import pokemons from '../../data/pokemonList.json';
 export default {
   name: 'App',
   components: {
@@ -21,17 +22,35 @@ export default {
   },
   data(){
     return {
-      pokemonType:pokemonType
+      lists:[]
     }
   },
+  created(){
+    let idx = (new URLSearchParams(location.search)).get('idx');
+    let type = pokemonType.find((type)=>{
+      return type.no == idx;
+    });
+    let typePokemons = pokemons.filter((pokemon)=>{
+      return pokemon.type.includes(type.name);
+    });
+    typePokemons.forEach(function(pokemon){
+      pokemon.pic = "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/"+pokemon.src;
+    });
+    this.lists = typePokemons;
+  },
   mounted(){
-    console.log(pokemonType);
+    firebase.database().ref(db).on("value", (snapshot) => {
+      mabongStickers = snapshot.val() || [];
+    });
   },
   updated(){
 
   },
   methods:{
-    
+    addSticker:function(event,buid){
+      firebase.database().ref(db+"/"+mabongStickers.length).set({buid:buid});
+      location.href = "/";
+    }
   }
 }
 </script>

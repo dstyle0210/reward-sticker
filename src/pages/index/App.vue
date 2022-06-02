@@ -12,7 +12,6 @@
 <script>
 import Layout_Header from '../../components/Layout_Header.vue';
 import C_StickerList from '../../components/C_StickerList.vue';
-import axios from 'axios';
 import pokemons from '../../data/pokemonList.json';
 export default {
   name: 'App',
@@ -26,13 +25,10 @@ export default {
       stamps:[]
     };
   },
-
   mounted(){
-    console.log(pokemons);
-    axios.get("/data/_dummy.json").then((result)=>{
-      console.log(result.data);
-      this.pokemons = pokemons; // 전체 포켓몬 데이터
-      this.stamps = result.data; // 가지고 있는 스탬프수
+    firebase.database().ref(db).on("value", (snapshot) => {
+      mabongStickers = snapshot.val() || [];
+      this.stamps = mabongStickers;
     });
   },
   updated(){
@@ -48,7 +44,7 @@ export default {
 </script>
 <style lang="scss">
 .p-index{padding-bottom:70px;
-    .p-index__stickerBook{padding-top:20px;}
+    .p-index__stickerBook{padding:20px 0 0;}
     .p-index__throwBall{position:fixed;right:20px;bottom:20px;
         span{display:none;}
     }

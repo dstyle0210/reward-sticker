@@ -6,6 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>마봉 칭찬스티커</title>
+    <script>
+    // const db = "/sticker";
+    const db = "/dev";
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script>
+      let mabongStickers;
+      firebase.initializeApp({
+        authDomain: "mabong-reward-sticker.firebaseapp.com/",
+        databaseURL: "https://mabong-reward-sticker-default-rtdb.firebaseio.com",
+        projectId: "mabong-reward-sticker"
+      });
+    </script>
 </head>
 <body>
   <div id="app"></div>
