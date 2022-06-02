@@ -7,8 +7,7 @@
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>마봉 칭찬스티커</title>
     <script>
-    // const db = "/sticker";
-    const db = "/dev";
+    const db = (location.hostname=="localhost") ? "/dev" : "/sticker"; // 로컬호스트가 아니라면 실제DB로 연결
     </script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
@@ -17,7 +16,7 @@
       firebase.initializeApp({
         authDomain: "mabong-reward-sticker.firebaseapp.com/",
         databaseURL: "https://mabong-reward-sticker-default-rtdb.firebaseio.com",
-        projectId: "mabong-reward-sticker"
+        projectId: "mabong-reward-sticker" 
       });
     </script>
 </head>
