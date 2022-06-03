@@ -1,5 +1,5 @@
 <template>
-  <Layout_Header></Layout_Header>
+  <Layout_Header historyYn="N"></Layout_Header>
   <main class="p-index">
       <section class="s-stickerBook p-index__stickerBook">
           <C_StickerList :stamps="stamps" :pokemons="pokemons"></C_StickerList>
