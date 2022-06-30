@@ -20,7 +20,24 @@
 <script>
 import Layout_Header from '../../components/Layout_Header.vue';
 import pokemonType from '../../data/pokemonType.json';
-import pokemons from '../../data/pokemonList.json';
+import pokemonsOrigin from '../../data/pokemonList.json';
+
+var _pokemons = [[],[],[],[],[]];
+pokemonsOrigin.forEach((mon)=>{
+  if( (/히스이/).test(mon.trend) ){
+    _pokemons[1].push(mon);
+  }else if( (/알로라/).test(mon.trend) ){
+    _pokemons[2].push(mon);
+  }else if( (/가라르/).test(mon.trend) ){
+    _pokemons[3].push(mon);
+  }else if( (/거다이맥스/).test(mon.trend) ){
+    _pokemons[4].push(mon);
+  }else{
+    _pokemons[0].push(mon);
+  };
+});
+
+var pokemons = [..._pokemons[0],..._pokemons[1],..._pokemons[2],..._pokemons[3],..._pokemons[4]];
 pokemons.sort(function(a,b){
   return ((a.no)*1) - ((b.no)*1);
 });
