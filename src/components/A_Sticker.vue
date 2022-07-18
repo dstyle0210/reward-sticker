@@ -1,23 +1,19 @@
 <template>
-<label class="a-sticker" v-if="src">
-    <input type="checkbox" :name="inputname" /><i></i>
-    <img :data-origin="src" alt="">
-</label>
-<label class="a-sticker" v-else></label>
+  <label class="a-sticker" @click="clickEvent(e,_pokemon)"><img :src="_pokemon.src" alt=""></label>
 </template>
 <script>
 export default {
-  name: 'A_Sticker',
+  name: 'A_Sticker', 
   props: {
     pokemon: Object,
-    type:String
+    src:String,
+    click:Function
   },
   computed:{
-    src:function(){
-      return (this.pokemon) ? this.pokemon.src : "";
-    },
-    inputname:function(){
-      return (this.pokemon) ? "inputname"+this.pokemon.buid : "";
+    _pokemon:function(){    
+      let _pokemon = Object.assign({}, this.pokemon);
+      _pokemon.src = (/pokemonkorea/).test(_pokemon.src) ? _pokemon.src : "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/"+_pokemon.src;
+      return _pokemon;
     }
   },
   mounted(){
@@ -25,19 +21,18 @@ export default {
   },
   updated(){
         
+  },
+  methods:{
+    clickEvent:function(event,pokemon){
+        if(this.click) this.click.call(null,pokemon);
+        return false;
+    }
   }
 }
 </script>
 <style lang="scss">
 .a-sticker{position:relative;display:block;width:80px;height:80px;
     &:before{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:#f5f5f5;border-radius:50%;overflow:hidden;}
-    input{display:none;
-        &:checked ~ i{display:inline-block;}
-    }
     img{position:absolute;width:100%;height:100%;}
-    i{display:none;position:absolute;top:8px;left:16px;z-index:3;width: 24px;height:36px;transform: rotate(45deg);opacity:0.8;
-        &:before {content:"";position: absolute;width:12px;height:36px;background-color:#f5f5f5;left:12px;top:0;}
-        &:after {content:"";position: absolute;width:12px;height:12px;background-color:#f5f5f5;left:0;top:24px;}
-    }
 }
 </style>

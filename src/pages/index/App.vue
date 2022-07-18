@@ -2,42 +2,78 @@
   <Layout_Header historyYn="N"></Layout_Header>
   <main class="p-index">
       <section class="s-stickerBook p-index__stickerBook">
-          <C_StickerList :stamps="stamps" :pokemons="pokemons"></C_StickerList>
+          <A_Sticker v-for="pokemon in stickers" :pokemon="pokemon" :click="zoom"></A_Sticker>
       </section>
       <div class="p-index__throwBall">
           <a href="typeList.html" class="a-throwBall"><span>던지기</span></a>
       </div>
+      <div class="l-pokemonZoom" v-show="isZoom" @click="close(e)">
+          <span><img :src="zoomSrc" alt="" /></span>
+      </div>
+      <div class="l-pokemonThrow" v-show="isZoom">
+          <a href="#" @click="delSticker()" class="a-throwBall"></a>
+        </div>
   </main>
 </template>
 <script>
 import Layout_Header from '../../components/Layout_Header.vue';
-import C_StickerList from '../../components/C_StickerList.vue';
 import pokemons from '../../data/pokemonList.json';
+import M_Sticker from '../../components/M_Sticker.vue';
+import A_Sticker from "../../components/A_Sticker.vue";
+
 export default {
   name: 'App',
   components: {
     Layout_Header,
-    C_StickerList
+    M_Sticker,
+    A_Sticker
   },
   data(){
     return {
-      pokemons:pokemons,
-      stamps:[]
+      stickers:[],
+      stamps:[],
+      isZoom:false,
+      zoomSrc:"",
+      buid:""
     };
   },
   mounted(){
     firebase.database().ref(db).on("value", (snapshot) => {
-      mabongStickers = snapshot.val() || [];
-      this.stamps = mabongStickers;
+      const mabongStamps = [];
+      let _temp = snapshot.val() || []; // 마봉 칭찬스티커 buid 목록
+      for(let key in _temp){
+        _temp[key].key = key;
+        mabongStamps.push(_temp[key]);
+      };
+      this.stamps = mabongStamps;
+      // .filter(n=>n)
+      this.stickers = mabongStamps.map((stamp)=>{
+        return pokemons.find((pokemon)=>{
+          return pokemon.buid == stamp.buid;
+        });
+      });
     });
   },
   updated(){
 
   },
   methods:{
-    move:function(e){
-      e.preventDefault();
-      location.href="/draw.html";
+    zoom:function(pokemon){
+      this.isZoom = true;
+      this.zoomSrc = pokemon.src;
+      this.buid = pokemon.buid;
+    },
+    close:function(){
+      this.isZoom = false;
+    },
+    delSticker:function(){
+      const buid = this.buid;
+      let targetStamp = this.stamps.find((stamp)=>{
+          return stamp.buid == buid;
+      });
+      firebase.database().ref(db+"/"+targetStamp.key).remove();
+      this.isZoom = false;
+      // console.log(this.buid);
     }
   }
 }
@@ -50,8 +86,31 @@ export default {
     }
 }
 
+.s-stickerBook{display:grid;align-items:start;
+  .a-sticker{margin:20px auto 0;}
+    @media (min-width: 375px) { &{grid-template-columns: repeat(3,1fr);} }
+    @media (min-width: 667px) { &{grid-template-columns: repeat(5,1fr);} }
+    @media (min-width: 768px) { &{grid-template-columns: repeat(6,1fr);} }
+    @media (min-width: 1024px) { &{grid-template-columns: repeat(8,1fr);} }
+}
+
+
+.l-pokemonZoom{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2;background:rgba(0,0,0,0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span{display:block;margin:0 auto;background:#f5f5f5;width:80vmin;border-radius:50%;
+    img{display:block;width:100%;margin:0 auto;}
+  }
+}
+
+.l-pokemonThrow{position:fixed;left:0;right:0;bottom:10%;z-index:3;
+  .a-throwBall{margin:0 auto;}
+}
+
 /*! 공 던지기 버튼(뽑기) */
 .a-throwBall {background: transparent;border: 0;width: 60px;height: 60px;background: #fff;border-radius: 50%;border: 1px solid #ccc;display: flex;flex-direction: column;justify-content: center;align-items: center;
     &:before {content: "";display: block;width: 38px;height: 38px;background: url("https://pokemonkorea.co.kr/img/icon/icon_ball_c.png") no-repeat;}
 }
+
 </style>

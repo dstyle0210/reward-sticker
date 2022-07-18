@@ -2,12 +2,7 @@
   <Layout_Header></Layout_Header>
   <main class="p-pokemonList">
         <section class="c-pokemonList">
-    
-            <dl class="m-sticker" v-for="pokemon in lists" :no="pokemon.no">
-                <dt>{{pokemon.name}}<p>{{pokemon.trend}}</p></dt>
-                <dd><label class="a-sticker" @click="zoom(e,pokemon)"><img :src="pokemon.pic" alt=""></label></dd>
-            </dl>
-
+          <M_Sticker v-for="pokemon in lists" :click="zoom" :pokemon="pokemon"></M_Sticker>
         </section>
         <div class="l-pokemonZoom" v-show="isZoom" @click="close(e)">
           <span><img :src="zoomSrc" alt="" /></span>
@@ -19,6 +14,7 @@
 </template>
 <script>
 import Layout_Header from '../../components/Layout_Header.vue';
+import M_Sticker from '../../components/M_Sticker.vue';
 import pokemonType from '../../data/pokemonType.json';
 import pokemonsOrigin from '../../data/pokemonList.json';
 
@@ -44,7 +40,8 @@ pokemons.sort(function(a,b){
 export default {
   name: 'App',
   components: {
-    Layout_Header
+    Layout_Header,
+    M_Sticker
   },
   data(){
     return {
@@ -77,13 +74,15 @@ export default {
   },
   methods:{
     addSticker:function(event){
-      firebase.database().ref(db+"/"+mabongStickers.length).set({buid:this.buid});
+      const nowKey = new Date().getTime();
+      firebase.database().ref(db+"/"+nowKey).set({buid:this.buid});
       location.href = "/";
     },
-    zoom:function(event,pokemon){
+    zoom:function(pokemon){
       this.isZoom = true;
-      this.zoomSrc = pokemon.pic;
+      this.zoomSrc = pokemon.src;
       this.buid = pokemon.buid;
+      console.log(pokemon);
     },
     close:function(){
       this.isZoom = false;
