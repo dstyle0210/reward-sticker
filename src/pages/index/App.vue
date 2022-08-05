@@ -11,7 +11,7 @@
           <span><img :src="zoomSrc" alt="" /></span>
       </div>
       <div class="l-pokemonThrow" v-show="isZoom">
-          <a href="#" @click="delSticker()" class="a-throwBall"></a>
+          <a href="#" @click="delSticker()" class="a-close"></a>
         </div>
   </main>
 </template>
@@ -105,12 +105,15 @@ export default {
 }
 
 .l-pokemonThrow{position:fixed;left:0;right:0;bottom:10%;z-index:3;
-  .a-throwBall{margin:0 auto;}
+  .a-throwBall,.a-close{margin:0 auto;}
 }
 
 /*! 공 던지기 버튼(뽑기) */
 .a-throwBall {background: transparent;border: 0;width: 60px;height: 60px;background: #fff;border-radius: 50%;border: 1px solid #ccc;display: flex;flex-direction: column;justify-content: center;align-items: center;
     &:before {content: "";display: block;width: 38px;height: 38px;background: url("https://pokemonkorea.co.kr/img/icon/icon_ball_c.png") no-repeat;}
+}
+.a-close{position:relative;background: transparent;border: 0;width: 60px;height: 60px;background: #333;border-radius: 50%;border: 1px solid #ccc;display: flex;flex-direction: column;justify-content: center;align-items: center;
+  &:before {content: "\00d7";position:absolute;top:-6px;left:9px;display: block;width: 38px;height: 38px;color:#fff;font-size:60px;line-height:60px;}
 }
 
 </style>
