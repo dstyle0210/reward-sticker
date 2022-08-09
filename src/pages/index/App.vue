@@ -18,14 +18,12 @@
 <script>
 import Layout_Header from '../../components/Layout_Header.vue';
 import pokemons from '../../data/pokemonList.json';
-import M_Sticker from '../../components/M_Sticker.vue';
 import A_Sticker from "../../components/A_Sticker.vue";
 
 export default {
   name: 'App',
   components: {
     Layout_Header,
-    M_Sticker,
     A_Sticker
   },
   data(){
@@ -95,7 +93,7 @@ export default {
 }
 
 
-.l-pokemonZoom{position:fixed;top:0;left:0;right:0;bottom:0;z-index:2;background:rgba(0,0,0,0.7);
+.l-pokemonZoom{position:fixed;top:0;left:0;right:0;bottom:0;z-index:5;background:rgba(0,0,0,0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,7 +102,7 @@ export default {
   }
 }
 
-.l-pokemonThrow{position:fixed;left:0;right:0;bottom:10%;z-index:3;
+.l-pokemonThrow{position:fixed;left:0;right:0;bottom:10%;z-index:6;
   .a-throwBall,.a-close{margin:0 auto;}
 }
 
@@ -113,7 +111,7 @@ export default {
     &:before {content: "";display: block;width: 38px;height: 38px;background: url("https://pokemonkorea.co.kr/img/icon/icon_ball_c.png") no-repeat;}
 }
 .a-close{position:relative;background: transparent;border: 0;width: 60px;height: 60px;background: #333;border-radius: 50%;border: 1px solid #ccc;display: flex;flex-direction: column;justify-content: center;align-items: center;
-  &:before {content: "\00d7";position:absolute;top:-6px;left:9px;display: block;width: 38px;height: 38px;color:#fff;font-size:60px;line-height:60px;}
+  &:before {content: "\00d7";display: block;margin:0 auto;width: 38px;height: 38px;color:#fff;font-size:60px;line-height:38px;}
 }
 
 </style>

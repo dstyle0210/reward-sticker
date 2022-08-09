@@ -20,13 +20,14 @@ export default {
     let _pokemon = Object.assign({}, this.pokemon);
     _pokemon.src = "https://data1.pokemonkorea.co.kr/newdata/pokedex/full/"+_pokemon.src;
     this._pokemon = _pokemon;
-    return _pokemon;
+    return _pokemon; // name , trend 포함
   },
   created(){
 
   },
   mounted(){
-    // console.log(this.pokemon);
+    // console.log(this.name);
+    // console.log(this.trend);
   },
   updated(){
 
